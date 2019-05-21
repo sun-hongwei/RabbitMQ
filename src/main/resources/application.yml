@@ -1,0 +1,71 @@
+# 开发环境配置
+server:
+  # 服务端口
+  port: 80
+  servlet:
+    # 项目contextPath
+    context-path: /
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+ 
+# 日志配置
+logging:
+  level:
+    com.bridge: debug
+    org.springframework: WARN
+    org.spring.springboot.dao: debug
+
+
+# Spring配置
+spring:
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  # 服务模块
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: true
+  # rabbitmq 服务配置
+  rabbitmq:
+    # 重新发送消息次数
+    tryCount: 3
+    # 超时时间
+    mqTimeOut: 1
+    # rabbitmq 服务IP
+    host: 127.0.0.1
+    # rabbitmq 服务端口号
+    port: 5672
+    # rabbitmq 用户名
+    username: guest
+    # rabbitmq 密码
+    password: guest
+    virtual-host: /
+    connection-timeout: 20000
+    # 消费者配置
+    listener:
+      simple:
+        # 并发数
+        concurrency: 20
+        # 最大并发数
+        max-concurrency: 2000
+        # 限流 取决于服务器性能
+        prefetch: 1
+        # 手动签收 （可配自动）
+        acknowledge-mode: manual
+    # 高可靠 消息确认
+    publisher-confirms: true
+    publisher-returns: true
+    template:
+      mandatory: true
+
+#线程等待时间配置
+Thread:
+  threadWaitTime: 10000
+
+
